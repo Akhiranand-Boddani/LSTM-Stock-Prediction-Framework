@@ -108,7 +108,7 @@ echo.
 
 echo [INFO] Please create a repository on GitHub:
 echo   1. Go to https://github.com/new
-echo   2. Repository name: lstm-stock-prediction
+echo   2. Repository name: LSTM-Stock-Prediction-Framework
 echo   3. Description: LSTM-based stock price prediction with Streamlit
 echo   4. Visibility: Public (recommended)
 echo   5. DO NOT initialize with README, .gitignore, or license
@@ -123,7 +123,7 @@ if "%GITHUB_USERNAME%"=="" (
     exit /b 1
 )
 
-set REPO_URL=https://github.com/%GITHUB_USERNAME%/lstm-stock-prediction.git
+set REPO_URL=https://github.com/%GITHUB_USERNAME%/LSTM-Stock-Prediction-Framework.git
 echo.
 echo [INFO] Repository URL: %REPO_URL%
 echo.
@@ -166,7 +166,7 @@ if %errorlevel% equ 0 (
     echo ================================================
     echo.
     echo [OK] Your repository is now available at:
-    echo   https://github.com/%GITHUB_USERNAME%/lstm-stock-prediction
+    echo   https://github.com/%GITHUB_USERNAME%/LSTM-Stock-Prediction-Framework
     echo.
     echo Next steps:
     echo   1. Visit your repository on GitHub
@@ -176,7 +176,7 @@ if %errorlevel% equ 0 (
     
     set /p OPEN_BROWSER="Would you like to open your repository in the browser? (Y/N): "
     if /i "%OPEN_BROWSER%"=="Y" (
-        start https://github.com/%GITHUB_USERNAME%/lstm-stock-prediction
+        start https://github.com/%GITHUB_USERNAME%/LSTM-Stock-Prediction-Framework
     )
 ) else (
     echo.
@@ -189,7 +189,7 @@ if %errorlevel% equ 0 (
     echo.
     echo   2. Repository doesn't exist:
     echo      - Make sure you created the repository on GitHub first
-    echo      - Check the repository name matches: lstm-stock-prediction
+    echo      - Check the repository name matches: LSTM-Stock-Prediction-Framework
     echo.
     echo   3. Permission denied:
     echo      - Verify your GitHub username is correct
