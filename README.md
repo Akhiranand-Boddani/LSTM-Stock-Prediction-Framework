@@ -13,12 +13,14 @@ A high-fidelity, production-ready LSTM-based framework for multivariate time-ser
 
 ## 🎯 Key Features
 
-- **Stationary Target Prediction**: Predicts logarithmic returns instead of raw prices for statistical stability
-- **Multivariate Analysis**: Leverages multiple technical indicators (RSI, MACD, EMA) alongside price data
-- **Leakage-Proof Scaling**: Implements separate scalers for features and target to prevent data contamination
-- **Stacked LSTM Architecture**: Deep learning model with dropout regularization
+- **Advanced Architecture**: Bidirectional GRU layers with custom variance-preserving loss function
+- **Comprehensive Features**: 20 technical indicators including momentum, trend, volume, and volatility metrics
+- **Stationary Target Prediction**: Predicts returns for statistical stability with proper variance preservation
+- **Multivariate Analysis**: Leverages OHLCV data and advanced technical indicators
+- **Leakage-Proof Scaling**: Implements RobustScaler for features and StandardScaler for target
+- **Deep Learning Model**: Bidirectional GRU with layer normalization and L2 regularization
 - **Interactive Dashboard**: Streamlit-based web interface for real-time predictions
-- **Comprehensive Evaluation**: Detailed performance metrics and visualizations
+- **Comprehensive Evaluation**: Detailed performance metrics including directional accuracy
 
 ## 📋 System Requirements
 
@@ -64,6 +66,30 @@ streamlit run streamlit_app.py
 ```
 
 The dashboard will open in your browser at `http://localhost:8501`
+
+## 🚀 Deployment
+
+### Deploy to Streamlit Cloud (Free & Easy)
+
+1. **Push to GitHub**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/YOUR_USERNAME/lstm-stock-prediction.git
+   git push -u origin main
+   ```
+
+2. **Deploy on Streamlit Cloud**:
+   - Go to [share.streamlit.io](https://share.streamlit.io)
+   - Click "New app"
+   - Select your repository
+   - Set main file: `streamlit_app.py`
+   - Click "Deploy"!
+
+3. **Your app will be live** at: `https://YOUR-APP.streamlit.app`
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## 📁 Project Structure
 
@@ -330,8 +356,7 @@ This project is provided for educational purposes. Users are responsible for ens
 ## 👨‍💻 Author
 
 Akhiranand Boddani
-Bhavan's Vivekananda College of Science, Humanities & Commerce Sainikpuri, Secunderabad
-Version 1.0 - October 2025
+Bhavan's Vivekananda College of Science, Humanities & Commerce Sainikpuri, SecunderabadVersion 1.0 - October 2025
 
 ---
 
