@@ -50,7 +50,7 @@ def load_model_and_scalers():
     import os
     
     # Check which model files exist
-    has_final = os.path.exists('lstm_model_final.h5')
+    has_final = os.path.exists('lstm_model_final.keras')
     
     try:
         # Load model with custom objects to handle compatibility
@@ -68,7 +68,7 @@ def load_model_and_scalers():
                     model = tf.keras.models.load_model('lstm_model_final.h5', compile=False)
                 except Exception as e2:
                     # Strategy 3: Load weights only (rebuild architecture)
-                    return None, None, None, f"Model loading failed. Please retrain with: python final_main.py\n\nError: {str(e1)}", None
+                    return None, None, None, f"Model loading failed. Please retrain with: python main.py\n\nError: {str(e1)}", None
             
             scaler_features = joblib.load('scaler_features_final.pkl')
             scaler_target = joblib.load('scaler_target_final.pkl')
