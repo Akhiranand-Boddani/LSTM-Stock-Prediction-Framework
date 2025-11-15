@@ -42,20 +42,40 @@ NUM_FEATURES = len(FEATURES)  # 20 features
 @st.cache_resource
 def load_model_and_scalers():
     """Load the trained model and scalers from disk."""
+    import os
+    
+    # Check which model files exist
+    has_final = os.path.exists('lstm_model_final.h5')
+    has_original = os.path.exists('lstm_model.h5')
+    
     try:
-        # Try loading final model first, fallback to original
-        try:
+        # ONLY try loading final model (new one with 30 timesteps, 20 features)
+        if has_final:
             model = keras.models.load_model('lstm_model_final.h5', compile=False)
             scaler_features = joblib.load('scaler_features_final.pkl')
             scaler_target = joblib.load('scaler_target_final.pkl')
             return model, scaler_features, scaler_target, None, 'final'
-        except:
-            model = keras.models.load_model('lstm_model.h5', compile=False)
-            scaler_features = joblib.load('scaler_features.pkl')
-            scaler_target = joblib.load('scaler_target.pkl')
-            return model, scaler_features, scaler_target, None, 'original'
+        else:
+            error_msg = """
+            **Missing Model Files!**
+            
+            The new model files are not found. Please run:
+            ```bash
+            python final_main.py
+            ```
+            
+            This will generate:
+            - lstm_model_final.h5
+            - scaler_features_final.pkl  
+            - scaler_target_final.pkl
+            
+            **Note:** The old lstm_model.h5 (60 timesteps, 5 features) is not compatible 
+            with this updated dashboard which expects 30 timesteps and 20 features.
+            """
+            return None, None, None, error_msg, None
+            
     except Exception as e:
-        return None, None, None, str(e), None
+        return None, None, None, f"Error loading model: {str(e)}", None
 
 # ============================================================================
 # DATA PROCESSING FUNCTIONS
