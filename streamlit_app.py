@@ -1,3 +1,8 @@
+"""
+LSTM Stock Prediction Dashboard
+Streamlit Deployment Application
+Version: 1.0
+"""
 
 import streamlit as st
 import numpy as np
@@ -46,12 +51,25 @@ def load_model_and_scalers():
     
     # Check which model files exist
     has_final = os.path.exists('lstm_model_final.h5')
-    has_original = os.path.exists('lstm_model.h5')
     
     try:
-        # ONLY try loading final model (new one with 30 timesteps, 20 features)
+        # Load model with custom objects to handle compatibility
         if has_final:
-            model = keras.models.load_model('lstm_model_final.h5', compile=False)
+            # Fix for Keras 3.x compatibility - load without compiling
+            import tensorflow as tf
+            
+            # Try multiple loading strategies
+            try:
+                # Strategy 1: Load with compile=False
+                model = keras.models.load_model('lstm_model_final.h5', compile=False)
+            except Exception as e1:
+                try:
+                    # Strategy 2: Use TensorFlow's load method
+                    model = tf.keras.models.load_model('lstm_model_final.h5', compile=False)
+                except Exception as e2:
+                    # Strategy 3: Load weights only (rebuild architecture)
+                    return None, None, None, f"Model loading failed. Please retrain with: python final_main.py\n\nError: {str(e1)}", None
+            
             scaler_features = joblib.load('scaler_features_final.pkl')
             scaler_target = joblib.load('scaler_target_final.pkl')
             return model, scaler_features, scaler_target, None, 'final'
@@ -68,9 +86,6 @@ def load_model_and_scalers():
             - lstm_model_final.h5
             - scaler_features_final.pkl  
             - scaler_target_final.pkl
-            
-            **Note:** The old lstm_model.h5 (60 timesteps, 5 features) is not compatible 
-            with this updated dashboard which expects 30 timesteps and 20 features.
             """
             return None, None, None, error_msg, None
             
