@@ -61,7 +61,7 @@ def load_model_and_scalers():
             # Try multiple loading strategies
             try:
                 # Strategy 1: Load with compile=False
-                model = keras.models.load_model('lstm_model_final.h5', compile=False)
+                model = keras.models.load_model('lstm_model_final.keras', compile=False)
             except Exception as e1:
                 try:
                     # Strategy 2: Use TensorFlow's load method
