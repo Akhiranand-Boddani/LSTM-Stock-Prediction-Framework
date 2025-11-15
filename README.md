@@ -355,7 +355,8 @@ This project is provided for educational purposes. Users are responsible for ens
 
 ## 👨‍💻 Author
 
-Akhiranand Boddani
+Akhiranand Boddani, Kunchala Rohit Kumar
+
 Bhavan's Vivekananda College of Science, Humanities & Commerce Sainikpuri, SecunderabadVersion 1.0 - October 2025
 
 ---
